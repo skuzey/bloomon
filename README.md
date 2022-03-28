@@ -3,7 +3,7 @@
 ## How to build and run
 
 1. Checkout/download the code to your local
-2. Go to the root folder of the project
+2. Go to the root folder of the project from terminal / command line
 3. Build the docker file in the root folder of the project: ```docker build . -t bloomwild-sk```
 5. Run the docker image: ```docker run -a stdout -a stdin -it bloomwild-sk```
 6. Program runs and expect you to enter data using the console
