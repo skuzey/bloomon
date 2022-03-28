@@ -6,11 +6,11 @@ def process_input():
     designs = []
     read_designs = True
 
-    print("Ready!")
+    print("Ready. You can start writing the designs and flowers..")
     while True:
         line = input()
         if line == "q":
-            print("Done!")
+            print("Quitting!")
             break
         if read_designs:
             if line == "":
