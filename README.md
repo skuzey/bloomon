@@ -13,9 +13,9 @@
 
 ### Additional Info
 
-Program is running based on the assumptions given in the assesment.pdf, there are no extra checks.
-
-You can find test codes in the test* files. In order to run them, you need to locally setup python.
+1. Program is running based on the assumptions given in the assesment.pdf, there are no extra validation checks. 
+2. For high flower quantities, the program starts to get slow. And although it may seem responsive and still accepting input from the command line, it actually is not. (*total max quantities <20 seems to run under 1 sec. e.g AS10a10b11, AS6a6b7c11, AS4a4b5c5d11*). 
+3. You can find test codes in the test* files. In order to run them, you need to locally setup python.
 
 
 
