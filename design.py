@@ -35,8 +35,7 @@ class DesignCombination:
 
 
 class DesignCombinationGenerator:
-    # creates all possible combinations of K elements in a given array of size N
-
+    # sample: {aS:4, bS:1}, {aS:3, bS:2}
     def __init__(self):
         self.combinations = []
 
@@ -82,25 +81,27 @@ class Design:
     def __init__(self, design_str):
         self.id = None
         self.size = None
+        self.total_flower_count = 0
 
-        total_flower_count, flower_types = self.parse(design_str)
+        # flower types in this design : {aL:2, bL:1}
+        self.flower_types = {}
+
+        self.parse(design_str)
 
         self.combinations = DesignCombinationGenerator().generate(
-            flower_types,
-            total_flower_count - len(flower_types),
+            self.flower_types,
+            self.total_flower_count - len(self.flower_types),
         )
 
     def parse(self, design_str):
         self.id = design_str[0]
         self.size = design_str[1]
-        total_flower_count = int(design_str[-1])
-        flower_types_str = design_str[2:-1]
-        groups = re.findall('..', flower_types_str)  # split by 2 chars
-
-        flower_types = {}  # flower types in this design : {aL:2, bL:1}
+        total_count_str = re.findall(r"(\d+)$", design_str)[0]
+        self.total_flower_count = int(total_count_str)
+        total_count_size = len(total_count_str)
+        flower_types_str = design_str[2:-total_count_size]
+        groups = re.findall(r"[\d]+[a-z]*", flower_types_str)  # split by 2 chars
         for group in groups:
-            flower_type = group[1]
-            quantity = int(group[0])
-            flower_types[flower_type + self.size] = quantity
-
-        return total_flower_count, flower_types
+            flower_type = group[-1]
+            quantity = int(group[0:-1])
+            self.flower_types[flower_type + self.size] = quantity

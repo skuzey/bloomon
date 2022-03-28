@@ -53,6 +53,12 @@ class DesignTests(unittest.TestCase):
         self.assertEqual(2, result[7].get_quantity("c"))
         self.assertEqual(1, result[7].get_quantity("d"))
 
+    def test_design_with_two_digit_flower_quantities(self):
+        design = Design("AS12a3b14")
+
+        self.assertEqual(["12a2b", "11a3b"],
+                         [str(x) for x in design.combinations])
+
 
 if __name__ == '__main__':
     unittest.main()
