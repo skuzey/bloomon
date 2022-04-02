@@ -18,46 +18,26 @@ class DesignTests(unittest.TestCase):
         design = Design("AS2a2b3")
         self.assertEqual(["2a1b", "1a2b"], [str(x) for x in design.combinations])
 
-    def test_generate_combinations(self):
-        flower_types = {"a": 6, "b": 4, "c": 2, "d": 1}
-
-        result = DesignCombinationGenerator().generate(flower_types, 4)
-
-        # expected = ["aaaa","aaab","aaac","aabb","aabc","abbb","abbc","bbbc"]
-        print("list: ", result)
-
-        self.assertEqual(8, len(result))
-
-        self.assertEqual(5, result[0].get_quantity("a"))
-        self.assertEqual(1, result[0].get_quantity("b"))
-        self.assertEqual(1, result[0].get_quantity("c"))
-        self.assertEqual(1, result[0].get_quantity("d"))
-
-        self.assertEqual(4, result[1].get_quantity("a"))
-        self.assertEqual(2, result[1].get_quantity("b"))
-        self.assertEqual(1, result[1].get_quantity("c"))
-        self.assertEqual(1, result[1].get_quantity("d"))
-
-        self.assertEqual(4, result[2].get_quantity("a"))
-        self.assertEqual(1, result[2].get_quantity("b"))
-        self.assertEqual(2, result[2].get_quantity("c"))
-        self.assertEqual(1, result[2].get_quantity("d"))
-
-        self.assertEqual(3, result[3].get_quantity("a"))
-        self.assertEqual(3, result[3].get_quantity("b"))
-        self.assertEqual(1, result[3].get_quantity("c"))
-        self.assertEqual(1, result[3].get_quantity("d"))
-
-        self.assertEqual(1, result[7].get_quantity("a"))
-        self.assertEqual(4, result[7].get_quantity("b"))
-        self.assertEqual(2, result[7].get_quantity("c"))
-        self.assertEqual(1, result[7].get_quantity("d"))
-
     def test_design_with_two_digit_flower_quantities(self):
         design = Design("AS12a3b14")
 
         self.assertEqual(["12a2b", "11a3b"],
                          [str(x) for x in design.combinations])
+
+    def test_generate_combinations(self):
+        flower_types = {"a": 6, "b": 4, "c": 2, "d": 1}
+
+        result = DesignCombinationGenerator().generate(flower_types, 4)
+
+        print("list: ", result)
+
+        self.assertEqual(8, len(result))
+
+        self.assertEqual({'a': 5, 'b': 1, 'c': 1, 'd': 1}, result[0].get_quantities())
+        self.assertEqual({'a': 4, 'b': 2, 'c': 1, 'd': 1}, result[1].get_quantities())
+        self.assertEqual({'a': 4, 'b': 1, 'c': 2, 'd': 1}, result[2].get_quantities())
+        self.assertEqual({'a': 3, 'b': 3, 'c': 1, 'd': 1}, result[3].get_quantities())
+        self.assertEqual({'a': 1, 'b': 4, 'c': 2, 'd': 1}, result[7].get_quantities())
 
 
 if __name__ == '__main__':
